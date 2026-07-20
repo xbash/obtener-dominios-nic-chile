@@ -1,0 +1,36 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Entornos locales
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Datos operacionales e historicos generados localmente
+archivo/*.csv
+archivo/*.txt
+archivo/*.bak
+archivo/*.tmp
+archivo/*.log
+archivo/*checkpoint*.json
+archivo/*checkpoint*.json.tmp
+entrada/candidatos.txt
+
+# Salidas temporales, respaldos y logs
+*.checkpoint.json
+smoke-*.txt
+*.tmp
+*.bak
+*.log
+logs/
+descargas/
+
+# Copias locales de skills reutilizables, no fuente activa del proyecto
+.agents/_copias-reutilizables-no-usar/

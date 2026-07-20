@@ -1,0 +1,3 @@
+# Un dominio .cl por linea.
+# Copia este archivo como candidatos.txt para corridas locales.
+ejemplo.cl
