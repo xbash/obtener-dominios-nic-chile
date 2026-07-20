@@ -440,7 +440,7 @@ Completar esta sección en cada repositorio.
 
 * Código principal: `dominios-nic.py`, `dominios-por-caducar.py`
 * Pruebas: corridas de humo manuales con listas pequeñas y `python -m py_compile`
-* Configuración: `.gitignore`, archivos TXT de entrada/salida, checkpoint opcional
+* Configuración: `.gitignore`, archivos CSV/TXT operacionales ignorados por Git, checkpoint opcional
 * Documentación: `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`, `LICENSE`
 * Scripts operacionales: `dominios-nic.py`, `dominios-por-caducar.py`
 
@@ -456,26 +456,36 @@ Ejecución:
 
 ```text
 python dominios-nic.py --modo registrados --periodo 1d
-python dominios-por-caducar.py --modo descubrir --entrada dominios-nic-eliminados-semana.txt --orden inverso --limite 1000 --progreso si
+python dominios-nic.py --modo eliminados --periodo 1s
+python dominios-por-caducar.py --modo descubrir --entrada archivo\dominios-nic-eliminados-semana.csv --orden inverso --limite 1000 --progreso si
+python -m app.main dominios-nic --version
+python -m app.main dominios-por-caducar --version
 ```
 
 Pruebas:
 
 ```text
-python -m py_compile dominios-nic.py
-python -m py_compile dominios-por-caducar.py
-python dominios-por-caducar.py --modo descubrir --entrada dominios-nic-eliminados-semana.txt --limite 2 --progreso si
+python -c "import ast,pathlib; files=list(pathlib.Path('app').glob('*.py'))+[pathlib.Path('dominios-nic.py'), pathlib.Path('dominios-por-caducar.py')]; [ast.parse(f.read_text(encoding='utf-8'), filename=str(f)) for f in files]; print('AST OK:', len(files), 'archivos')"
+python -m app.main dominios-nic --version
+python -m app.main dominios-por-caducar --version
+python dominios-por-caducar.py --modo descubrir --entrada archivo\dominios-nic-eliminados-semana.csv --limite 2 --progreso si
 ```
 
 Formato, lint o validación estática:
 
 ```text
-python -m py_compile dominios-nic.py
-python -m py_compile dominios-por-caducar.py
+python -c "import ast,pathlib; files=list(pathlib.Path('app').glob('*.py'))+[pathlib.Path('dominios-nic.py'), pathlib.Path('dominios-por-caducar.py')]; [ast.parse(f.read_text(encoding='utf-8'), filename=str(f)) for f in files]; print('AST OK:', len(files), 'archivos')"
 ```
 
 ### Restricciones particulares
 
 * Mantener nombres, mensajes y archivos principales en español cuando sea razonable.
 * No inventar resultados ni afirmar pruebas no ejecutadas.
-* Conservar salidas TSV y archivos históricos coherentes con el flujo actual.
+* Mantener CSV como contrato principal:
+  * registrados: `fecha_consulta,dominio,fecha_registro`;
+  * eliminados: `fecha_consulta,dominio`;
+  * caducidad: CSV enriquecido documentado en `README.md`.
+* Mantener `VERSION_PROYECTO` en `app/configuracion.py` como fuente unica de version.
+* No publicar ni versionar historicos reales, respaldos, candidatos locales, logs, descargas, caches ni copias archivadas de skills.
+* Mantener `.agents/skills` como adaptadores locales; no duplicar skills globales completas salvo decision documentada.
+* Tratar las columnas comerciales como heuristicas locales, no como metricas SEO, reputacion, valor de mercado ni revision legal.

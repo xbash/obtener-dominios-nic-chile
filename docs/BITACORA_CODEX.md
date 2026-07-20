@@ -2,6 +2,8 @@
 
 Fecha de consolidacion: 2026-07-20
 
+Ultima actualizacion de sesion: 2026-07-20.
+
 ## Rol aplicado
 
 Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios localizados, validacion con evidencia y separacion entre datos observados, supuestos y heuristicas.
@@ -19,6 +21,12 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 9. Se mejoro el checkpoint ante bloqueos de Windows.
 10. Se reparo duplicacion accidental en `dominios-nic-registrados-mes.csv`.
 11. Se reorganizo `.agents`: copias reutilizables archivadas y adaptadores locales activos.
+12. Se ejecuto una revision prepublicacion para GitHub.
+13. Se reforzo `.gitignore` para excluir historicos reales, backups, candidatos locales y caches.
+14. Se agrego `entrada/candidatos.example.txt` como ejemplo seguro.
+15. Se reemplazo `LICENSE` por GPLv3 completo y se limpio `SECURITY.md`.
+16. Se unifico la version de scripts Python en `v2.3`.
+17. Se inicializo Git en `main`, se creo un commit inicial y luego se observo sincronizacion con `origin/main`.
 
 ## Hechos verificados
 
@@ -28,6 +36,10 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 - `dominios-nic` no usa hilos porque descarga listados por periodo.
 - El parser actual lee correctamente CSV de registrados de 3 columnas y eliminados de 2 columnas.
 - Las copias previas en `.agents` eran identicas a las skills globales de ingenieria de software y seguridad AppSec.
+- `gh` no estaba instalado o no estaba disponible en `PATH`.
+- El estado Git observado al cierre fue `main...origin/main`.
+- El ultimo commit observado fue `4f1fbec Coreccion de README.md`.
+- Los historicos reales y backups permanecen ignorados por Git.
 
 ## Supuestos activos
 
@@ -36,6 +48,8 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 - `riesgo_reventa` es una heuristica local, no una evaluacion legal.
 - `sector_probable` y `keyword_principal` son clasificaciones simples, no resultados de modelo ni benchmark.
 - `.agents/_copias-reutilizables-no-usar/` se conserva temporalmente hasta confirmacion del usuario.
+- La publicacion en GitHub debe mantener fuera del repo los datos operacionales reales.
+- El flujo de publicacion puede hacerse con comandos Git manuales mientras `gh` no este disponible.
 
 ## Problemas encontrados
 
@@ -44,6 +58,9 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 - El parser inicial de existentes no reconocia CSV con 3 columnas y genero duplicados en una corrida.
 - Evitar paralelizar acciones dependientes como leer y borrar archivos temporales.
 - Duplicar skills globales completas dentro de `.agents` aumenta riesgo de divergencia.
+- El `.git` inicial estaba vacio/incompleto y Git no reconocia el repo.
+- `entrada/candidatos.txt` contenia candidatos reales; fue excluido de versionamiento y reemplazado por ejemplo neutro.
+- `compileall` puede fallar por permisos de escritura en `__pycache__`; usar AST o `PYTHONDONTWRITEBYTECODE` como alternativa.
 
 ## Proximos pasos
 
@@ -53,6 +70,9 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 - Actualizar `AGENTS.md` con formatos CSV vigentes y regla de `.agents`.
 - Revisar `CHANGELOG.md` si se quiere versionar formalmente estos cambios.
 - Decidir si borrar `.agents/_copias-reutilizables-no-usar/`.
+- Confirmar visualmente en GitHub que solo se publicaron codigo, docs, configuracion, `.gitkeep` y ejemplos neutros.
+- Instalar/configurar `gh` si se quiere automatizar futuros pushes, repos o PRs.
+- Crear pruebas automatizadas antes de nuevas refactorizaciones.
 
 ## Instrucciones que deberian persistir en AGENTS.md
 
@@ -64,6 +84,9 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 - Validar con conteos antes/despues en cambios masivos.
 - Usar pruebas de humo acotadas con `--limite` para evitar consultas grandes innecesarias.
 - Mantener `.agents/skills` como adaptadores locales; las skills completas deben vivir en `gen-ai-skills`.
+- No versionar `archivo/*.csv`, `archivo/*.txt`, `*.bak`, `entrada/candidatos.txt`, `logs/`, `descargas/` ni caches.
+- Mantener `VERSION_PROYECTO` como fuente unica de version.
+- Antes de publicar, revisar `git status -sb --ignored` y una busqueda acotada de secretos/placeholders.
 
 ## Memories durables propuestas
 
@@ -114,3 +137,19 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 - Alcance: Este repositorio y repos similares que usen `gen-ai-skills`.
 - Riesgo si se guarda: Bajo; puede cambiar si se decide versionar skills congeladas dentro de cada repo.
 - Alternativa si debe ir mejor en AGENTS.md o docs/: Debe ir en `AGENTS.md` como regla del repositorio; tambien esta en `docs/DECISIONES_TECNICAS.md`.
+
+### Propuesta 7
+
+- Memory propuesta: Antes de publicar este repositorio, revisar que Git ignore historicos reales, backups, candidatos locales, logs, descargas, caches y copias archivadas de skills; usar ejemplos neutros como `entrada/candidatos.example.txt`.
+- Motivo: Evita exponer datos operacionales en GitHub.
+- Alcance: Este repositorio y proyectos similares de recoleccion de datos.
+- Riesgo si se guarda: Bajo; podria quedar incompleta si cambian los directorios operacionales.
+- Alternativa si debe ir mejor en AGENTS.md o docs/: Debe persistir en `AGENTS.md` y `docs/DECISIONES_TECNICAS.md`.
+
+### Propuesta 8
+
+- Memory propuesta: La version vigente del proyecto es `v2.3` y debe centralizarse en `app/configuracion.py` mediante `VERSION_PROYECTO`.
+- Motivo: Evita divergencia entre docstrings, CLI y logs.
+- Alcance: Solo este repositorio.
+- Riesgo si se guarda: Medio; debe actualizarse cuando cambie la version.
+- Alternativa si debe ir mejor en AGENTS.md o docs/: Mejor en `docs/DECISIONES_TECNICAS.md`; memory pendiente de confirmacion del usuario.

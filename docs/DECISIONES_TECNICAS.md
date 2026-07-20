@@ -2,6 +2,8 @@
 
 Fecha de consolidacion: 2026-07-20
 
+Ultima actualizacion de sesion: 2026-07-20.
+
 ## CSV como formato historico principal
 
 Decision: usar CSV para historicos y salidas principales.
@@ -70,9 +72,41 @@ Motivo: evitar duplicacion y mantener las skills reutilizables en su fuente glob
 
 Trade-off: futuras sesiones deben leer tanto el adaptador local como la fuente global si requieren el detalle completo.
 
+## Version centralizada del proyecto
+
+Decision: usar `VERSION_PROYECTO = "v2.3"` en `app/configuracion.py` como fuente unica para los CLI y logs.
+
+Motivo: varios modulos auxiliares mantenian `Version: v1.0` mientras los scripts principales estaban en `v2.3`.
+
+Trade-off: los docstrings siguen siendo texto estatico y requieren cuidado al cambiar de version, pero los puntos de ejecucion consumen la constante comun.
+
+## Preparacion para publicacion en GitHub
+
+Decision: versionar codigo, documentacion, archivos de control, `.gitkeep` y ejemplos neutros; no versionar datos operacionales reales.
+
+Archivos excluidos por regla:
+
+- `archivo/*.csv`
+- `archivo/*.txt`
+- `archivo/*.bak`
+- `entrada/candidatos.txt`
+- `logs/`
+- `descargas/`
+- `__pycache__/`
+- `.agents/_copias-reutilizables-no-usar/`
+
+Motivo: esos archivos contienen historicos reales, respaldos o estado local de ejecucion que no debe publicarse por defecto.
+
+## Licencia y seguridad para publicacion
+
+Decision: dejar `LICENSE` con el texto completo GPLv3 y eliminar placeholders de contacto en `SECURITY.md`.
+
+Motivo: GitHub y lectores externos deben encontrar terminos de licencia completos y una politica de reporte sin correos ficticios.
+
 ## Pendiente tecnico
 
 - Crear tests automatizados para parser CSV, deduplicacion, salida enriquecida y checkpoint.
 - Evaluar `--checkpoint-cada N` para reducir escrituras de checkpoint.
 - Evaluar una herramienta de post-procesamiento para DNS/HTTP/SEO/reputacion.
 - Decidir si borrar o conservar `_copias-reutilizables-no-usar/`.
+- Definir un flujo estable de publicacion: GitHub CLI en `PATH` o comandos Git remotos manuales.
