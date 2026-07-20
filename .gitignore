@@ -14,14 +14,10 @@ env/
 .env.*
 
 # Datos operacionales e historicos generados localmente
-archivo/*.csv
-archivo/*.txt
-archivo/*.bak
 archivo/*.tmp
 archivo/*.log
 archivo/*checkpoint*.json
 archivo/*checkpoint*.json.tmp
-entrada/candidatos.txt
 
 # Salidas temporales, respaldos y logs
 *.checkpoint.json
