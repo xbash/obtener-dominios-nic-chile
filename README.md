@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿# obtener-dominios-nic-chile
+# obtener-dominios-nic-chile
 
 Herramientas en Python para consultar dominios `.cl` recientemente registrados o eliminados en NIC Chile, mantener historicos CSV y revisar candidatos con expiracion cercana.
 
@@ -170,4 +169,3 @@ Este proyecto se distribuye bajo GNU GPLv3. Ver [`LICENSE`](LICENSE).
 =======
 # obtener-dominios-nic-chile
 Herramientas en Python para consultar dominios `.cl` recientemente registrados o eliminados en NIC Chile, mantener historicos CSV y revisar candidatos con expiracion cercana.
->>>>>>> 40aca41a05f1d9a6f9d3812a9524818adf9fb3b3
