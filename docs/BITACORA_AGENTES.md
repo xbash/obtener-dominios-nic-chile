@@ -10,4 +10,5 @@ Cada vez que un agente cree, modifique o continúe este proyecto, debe registrar
 
 | Fecha | Agente/herramienta | Modelo/versión | Entorno | Acción | Archivos afectados | Observaciones |
 |---|---|---|---|---|---|---|
+| 2026-07-22 | ChatGPT Codex | pendiente-de-verificacion | Codex CLI | Actualizacion de reglas de agente desde plantilla codex-python-app | AGENTS.md, docs/BITACORA_AGENTES.md | Se incorporo trazabilidad resumida esperada en README.md y estructura base de plantilla; no se modifico codigo. |
 | 2026-07-22 | ChatGPT Codex | pendiente-de-verificación | VSCode + Codex Extension | Inicialización del proyecto | AGENTS.md, README.md, docs/* | Creación de estructura base |

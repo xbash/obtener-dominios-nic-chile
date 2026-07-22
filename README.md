@@ -166,6 +166,3 @@ Ver [`SECURITY.md`](SECURITY.md).
 ## Licencia
 
 Este proyecto se distribuye bajo GNU GPLv3. Ver [`LICENSE`](LICENSE).
-=======
-# obtener-dominios-nic-chile
-Herramientas en Python para consultar dominios `.cl` recientemente registrados o eliminados en NIC Chile, mantener historicos CSV y revisar candidatos con expiracion cercana.

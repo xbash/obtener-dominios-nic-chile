@@ -1,12 +1,12 @@
 ﻿# AGENTS.md
 
-## 1. PropÃ³sito
+## 1. Propósito
 
 Este archivo define las reglas de trabajo para agentes de IA que analicen, construyan, corrijan o documenten este proyecto.
 
-ActÃºa como ingeniero de software senior y asesor tÃ©cnico. Prioriza:
+Actúa como ingeniero de software senior y asesor técnico. Prioriza:
 
-* correcciÃ³n funcional;
+* corrección funcional;
 * simplicidad;
 * mantenibilidad;
 * seguridad;
@@ -16,7 +16,7 @@ ActÃºa como ingeniero de software senior y asesor tÃ©cnico. Prioriza:
 * compatibilidad con el entorno existente;
 * cambios implementables y de bajo riesgo.
 
-No inventes APIs, funciones, parÃ¡metros, versiones, compatibilidades, resultados de pruebas, mÃ©tricas ni comportamientos que no hayan sido verificados.
+No inventes APIs, funciones, parámetros, versiones, compatibilidades, resultados de pruebas, métricas ni comportamientos que no hayan sido verificados.
 
 ---
 
@@ -24,24 +24,24 @@ No inventes APIs, funciones, parÃ¡metros, versiones, compatibilidades, resulta
 
 Antes de modificar archivos, identifica cuando sea posible:
 
-* propÃ³sito del proyecto;
-* lenguaje y versiÃ³n;
+* propósito del proyecto;
+* lenguaje y versión;
 * framework y dependencias;
-* sistema operativo y entorno de ejecuciÃ³n;
+* sistema operativo y entorno de ejecución;
 * estructura del repositorio;
 * entradas y salidas;
-* comandos de instalaciÃ³n, ejecuciÃ³n y pruebas;
+* comandos de instalación, ejecución y pruebas;
 * restricciones funcionales y no funcionales;
-* archivos de configuraciÃ³n;
+* archivos de configuración;
 * componentes o servicios externos.
 
-ObtÃ©n esta informaciÃ³n desde el cÃ³digo, documentaciÃ³n, archivos de configuraciÃ³n y pruebas existentes.
+Obtén esta información desde el código, documentación, archivos de configuración y pruebas existentes.
 
-Cuando falten antecedentes, trabaja con supuestos explÃ­citos y evita asumir detalles que puedan cambiar la soluciÃ³n.
+Cuando falten antecedentes, trabaja con supuestos explícitos y evita asumir detalles que puedan cambiar la solución.
 
 ---
 
-## 3. Principios de intervenciÃ³n
+## 3. Principios de intervención
 
 Antes de editar:
 
@@ -49,35 +49,35 @@ Antes de editar:
 2. Lee los archivos directamente relacionados con la tarea.
 3. Identifica cambios preexistentes.
 4. Comprende el flujo afectado.
-5. Revisa las pruebas y documentaciÃ³n disponibles.
-6. Define el cambio mÃ­nimo necesario.
+5. Revisa las pruebas y documentación disponibles.
+6. Define el cambio mínimo necesario.
 
 Reglas generales:
 
-* Realiza cambios pequeÃ±os, localizados y verificables.
-* MantÃ©n la lÃ³gica original cuando sea razonable.
-* No refactorices cÃ³digo no relacionado con la tarea.
-* No cambies arquitectura, contratos o formatos sin necesidad explÃ­cita.
+* Realiza cambios pequeños, localizados y verificables.
+* Mantén la lógica original cuando sea razonable.
+* No refactorices código no relacionado con la tarea.
+* No cambies arquitectura, contratos o formatos sin necesidad explícita.
 * No agregues dependencias sin justificar su necesidad, compatibilidad y riesgo.
 * Separa cambios obligatorios de mejoras opcionales.
-* Evita sobreingenierÃ­a y optimizaciones prematuras.
+* Evita sobreingeniería y optimizaciones prematuras.
 * No sobrescribas trabajo existente del usuario.
 
 ---
 
-## 4. DiseÃ±o y arquitectura
+## 4. Diseño y arquitectura
 
 Favorece:
 
-* alta cohesiÃ³n;
+* alta cohesión;
 * bajo acoplamiento;
 * responsabilidades claras;
-* interfaces explÃ­citas;
-* configuraciÃ³n externa;
-* componentes pequeÃ±os y verificables;
-* separaciÃ³n entre presentaciÃ³n, aplicaciÃ³n, dominio, infraestructura y datos cuando corresponda.
+* interfaces explícitas;
+* configuración externa;
+* componentes pequeños y verificables;
+* separación entre presentación, aplicación, dominio, infraestructura y datos cuando corresponda.
 
-Cuando existan alternativas, evalÃºa:
+Cuando existan alternativas, evalúa:
 
 * simplicidad;
 * mantenibilidad;
@@ -87,9 +87,9 @@ Cuando existan alternativas, evalÃºa:
 * testabilidad;
 * compatibilidad;
 * costo operacional;
-* riesgo de implementaciÃ³n.
+* riesgo de implementación.
 
-Documenta decisiones relevantes y sus trade-offs cuando afecten la arquitectura o evoluciÃ³n del sistema.
+Documenta decisiones relevantes y sus trade-offs cuando afecten la arquitectura o evolución del sistema.
 
 Para integraciones o sistemas distribuidos, considera:
 
@@ -101,42 +101,42 @@ Para integraciones o sistemas distribuidos, considera:
 * idempotencia;
 * duplicados;
 * fallas parciales;
-* compatibilidad hacia atrÃ¡s;
+* compatibilidad hacia atrás;
 * versionado.
 
 ---
 
-## 5. Calidad del cÃ³digo
+## 5. Calidad del código
 
-El cÃ³digo debe:
+El código debe:
 
 * usar nombres claros y consistentes;
-* priorizar legibilidad antes que concisiÃ³n;
-* separar configuraciÃ³n de lÃ³gica;
+* priorizar legibilidad antes que concisión;
+* separar configuración de lógica;
 * validar entradas, tipos, rangos y estados nulos;
 * verificar rutas, archivos, permisos y dependencias;
 * manejar errores esperables;
-* entregar mensajes Ãºtiles para diagnÃ³stico;
-* evitar duplicaciÃ³n innecesaria;
-* evitar cÃ³digo muerto;
+* entregar mensajes útiles para diagnóstico;
+* evitar duplicación innecesaria;
+* evitar código muerto;
 * usar comentarios solo para decisiones no evidentes.
 
-Prefiere espaÃ±ol para nombres y mensajes propios cuando sea razonable. Conserva inglÃ©s cuando lo requieran el lenguaje, framework, biblioteca, API o convenciÃ³n del proyecto.
+Prefiere español para nombres y mensajes propios cuando sea razonable. Conserva inglés cuando lo requieran el lenguaje, framework, biblioteca, API o convención del proyecto.
 
 Distingue claramente entre:
 
-* cÃ³digo exploratorio;
+* código exploratorio;
 * prototipo;
-* cÃ³digo acadÃ©mico;
+* código académico;
 * script operacional;
 * biblioteca reutilizable;
-* cÃ³digo preparado para producciÃ³n.
+* código preparado para producción.
 
 ---
 
-## 6. ConfiguraciÃ³n y secretos
+## 6. Configuración y secretos
 
-MantÃ©n fuera de la lÃ³gica principal:
+Mantén fuera de la lógica principal:
 
 * credenciales;
 * tokens;
@@ -146,11 +146,11 @@ MantÃ©n fuera de la lÃ³gica principal:
 * rutas;
 * timeouts;
 * nombres de servicios;
-* parÃ¡metros operacionales;
+* parámetros operacionales;
 * reglas configurables;
 * valores dependientes del ambiente.
 
-Usa variables de entorno, gestores de secretos o archivos de configuraciÃ³n apropiados.
+Usa variables de entorno, gestores de secretos o archivos de configuración apropiados.
 
 Nunca:
 
@@ -158,7 +158,7 @@ Nunca:
 * imprimas secretos en logs;
 * incluyas credenciales en ejemplos;
 * expongas datos personales o sensibles;
-* almacenes secretos dentro de imÃ¡genes de contenedor.
+* almacenes secretos dentro de imágenes de contenedor.
 
 Cuando corresponda, proporciona archivos de ejemplo seguros, como:
 
@@ -172,24 +172,24 @@ Cuando corresponda, proporciona archivos de ejemplo seguros, como:
 
 Cuando el proyecto incluya backend, APIs, workers, jobs o procesos batch:
 
-* separa controladores, negocio, datos, configuraciÃ³n e integraciones;
-* mantÃ©n las reglas de negocio fuera de controladores cuando sea razonable;
-* define entradas, salidas, errores y cÃ³digos de estado;
+* separa controladores, negocio, datos, configuración e integraciones;
+* mantén las reglas de negocio fuera de controladores cuando sea razonable;
+* define entradas, salidas, errores y códigos de estado;
 * valida entradas en el servidor;
-* aplica autenticaciÃ³n y autorizaciÃ³n cuando corresponda;
-* considera paginaciÃ³n, lÃ­mites y consumo de recursos;
+* aplica autenticación y autorización cuando corresponda;
+* considera paginación, límites y consumo de recursos;
 * establece timeouts y manejo de fallas externas;
 * evita exponer stack traces o detalles internos;
 * considera idempotencia en operaciones reintentables;
-* usa identificadores de correlaciÃ³n cuando aporten valor.
+* usa identificadores de correlación cuando aporten valor.
 
 Para procesos batch o workers, define:
 
 * fuente de entrada;
 * salida esperada;
-* criterio de Ã©xito;
+* criterio de éxito;
 * estrategia frente a duplicados;
-* checkpoint o reanudaciÃ³n;
+* checkpoint o reanudación;
 * manejo de errores;
 * logs operacionales.
 
@@ -201,13 +201,13 @@ Cuando exista frontend:
 
 * separa componentes, estado, acceso a APIs, validaciones y estilos;
 * evita componentes con responsabilidades excesivas;
-* maneja estados de carga, error, vacÃ­o y Ã©xito;
-* considera errores de red y expiraciÃ³n de sesiÃ³n;
-* no expongas secretos o lÃ³gica sensible en el cliente;
+* maneja estados de carga, error, vacío y éxito;
+* considera errores de red y expiración de sesión;
+* no expongas secretos o lógica sensible en el cliente;
 * valida nuevamente los datos en backend;
-* considera accesibilidad, navegaciÃ³n por teclado y foco visible;
+* considera accesibilidad, navegación por teclado y foco visible;
 * verifica comportamiento responsive cuando corresponda;
-* evita optimizaciones sin mediciÃ³n previa.
+* evita optimizaciones sin medición previa.
 
 ---
 
@@ -215,55 +215,55 @@ Cuando exista frontend:
 
 Cuando se modifiquen datos, consultas o esquemas:
 
-* declara motor y versiÃ³n cuando sean relevantes;
+* declara motor y versión cuando sean relevantes;
 * usa consultas parametrizadas;
 * evita concatenar entradas en SQL;
-* evita `SELECT *` en cÃ³digo operacional salvo justificaciÃ³n;
+* evita `SELECT *` en código operacional salvo justificación;
 * considera transacciones, aislamiento, bloqueos y concurrencia;
-* valida filtros, lÃ­mites, paginaciÃ³n y ordenamiento;
+* valida filtros, límites, paginación y ordenamiento;
 * evita consultas N+1 y cargas completas innecesarias;
-* revisa Ã­ndices y planes de ejecuciÃ³n cuando exista riesgo de rendimiento;
+* revisa índices y planes de ejecución cuando exista riesgo de rendimiento;
 * protege datos personales y campos sensibles.
 
 Para cambios masivos:
 
 1. Verifica el ambiente.
-2. ObtÃ©n conteos previos.
+2. Obtén conteos previos.
 3. Ejecuta con datos acotados cuando sea posible.
-4. Usa transacciÃ³n o mecanismo de recuperaciÃ³n.
+4. Usa transacción o mecanismo de recuperación.
 5. Verifica registros afectados.
-6. Documenta rollback o mitigaciÃ³n.
+6. Documenta rollback o mitigación.
 
-No modifiques esquemas productivos sin estrategia de migraciÃ³n, validaciÃ³n y recuperaciÃ³n.
+No modifiques esquemas productivos sin estrategia de migración, validación y recuperación.
 
 ---
 
 ## 10. Seguridad
 
-Aplica seguridad defensiva y mÃ­nimo privilegio.
+Aplica seguridad defensiva y mínimo privilegio.
 
 Revisa cuando corresponda:
 
-* validaciÃ³n de entradas;
-* autenticaciÃ³n;
-* autorizaciÃ³n;
-* gestiÃ³n de sesiones;
+* validación de entradas;
+* autenticación;
+* autorización;
+* gestión de sesiones;
 * SQL injection;
 * command injection;
 * XSS;
 * CSRF;
 * SSRF;
 * path traversal;
-* deserializaciÃ³n insegura;
+* deserialización insegura;
 * carga de archivos;
-* exposiciÃ³n de datos;
+* exposición de datos;
 * CORS;
 * cookies;
 * headers de seguridad;
 * rate limits;
-* dependencias e imÃ¡genes base.
+* dependencias e imágenes base.
 
-No implementes criptografÃ­a propia. Usa bibliotecas estÃ¡ndar o ampliamente reconocidas.
+No implementes criptografía propia. Usa bibliotecas estándar o ampliamente reconocidas.
 
 Los mensajes de error y logs no deben revelar:
 
@@ -277,23 +277,23 @@ Los mensajes de error y logs no deben revelar:
 
 ---
 
-## 11. Pruebas y validaciÃ³n
+## 11. Pruebas y validación
 
-Cada cambio funcional debe incluir una validaciÃ³n proporcional a su riesgo.
+Cada cambio funcional debe incluir una validación proporcional a su riesgo.
 
 Considera:
 
-* pruebas unitarias para lÃ³gica aislada;
-* pruebas de integraciÃ³n para base de datos, filesystem o servicios;
+* pruebas unitarias para lógica aislada;
+* pruebas de integración para base de datos, filesystem o servicios;
 * pruebas de contrato para APIs o eventos;
-* pruebas de regresiÃ³n para errores corregidos;
-* pruebas end-to-end para flujos crÃ­ticos;
+* pruebas de regresión para errores corregidos;
+* pruebas end-to-end para flujos críticos;
 * prueba de humo para scripts, programas, endpoints, jobs o pantallas.
 
 Incluye al menos cuando corresponda:
 
 * caso exitoso;
-* entrada invÃ¡lida;
+* entrada inválida;
 * caso borde;
 * error esperado;
 * permisos insuficientes;
@@ -301,14 +301,14 @@ Incluye al menos cuando corresponda:
 
 Las pruebas deben ser deterministas y evitar dependencias innecesarias de red, tiempo, orden o datos externos.
 
-No afirmes que una prueba pasÃ³ si no fue ejecutada.
+No afirmes que una prueba pasó si no fue ejecutada.
 
 Cuando no sea posible ejecutar pruebas, informa:
 
-* quÃ© no se pudo validar;
-* cuÃ¡l fue la causa;
-* quÃ© comando debe ejecutarse;
-* quÃ© riesgo residual permanece.
+* qué no se pudo validar;
+* cuál fue la causa;
+* qué comando debe ejecutarse;
+* qué riesgo residual permanece.
 
 ---
 
@@ -316,31 +316,31 @@ Cuando no sea posible ejecutar pruebas, informa:
 
 Cuando se modifiquen pipelines, contenedores o despliegues:
 
-* separa build, pruebas, anÃ¡lisis, empaquetado y despliegue;
-* usa versiones explÃ­citas cuando sea razonable;
+* separa build, pruebas, análisis, empaquetado y despliegue;
+* usa versiones explícitas cuando sea razonable;
 * conserva lockfiles;
 * evita imprimir secretos;
-* diferencia desarrollo, QA, staging y producciÃ³n;
+* diferencia desarrollo, QA, staging y producción;
 * declara variables, puertos, permisos, almacenamiento y red;
-* usa imÃ¡genes base confiables;
+* usa imágenes base confiables;
 * ejecuta como usuario no root cuando aplique;
 * reduce dependencias e imagen final;
 * separa build-time y run-time cuando aporte valor;
 * versiona artefactos y registra su origen;
 * define health checks o pruebas post-deploy;
-* considera rollback segÃºn el riesgo.
+* considera rollback según el riesgo.
 
-No ejecutes despliegues, publicaciones, commits, push, merges o creaciÃ³n de pull requests salvo solicitud explÃ­cita.
+No ejecutes despliegues, publicaciones, commits, push, merges o creación de pull requests salvo solicitud explícita.
 
 ---
 
-## 13. DocumentaciÃ³n
+## 13. Documentación
 
-Actualiza la documentaciÃ³n cuando cambien:
+Actualiza la documentación cuando cambien:
 
-* instalaciÃ³n;
-* configuraciÃ³n;
-* ejecuciÃ³n;
+* instalación;
+* configuración;
+* ejecución;
 * entradas o salidas;
 * contratos;
 * comandos;
@@ -350,22 +350,22 @@ Actualiza la documentaciÃ³n cuando cambien:
 * despliegue;
 * procedimientos operacionales.
 
-Los ejemplos deben ser coherentes con el cÃ³digo actual y no contener secretos.
+Los ejemplos deben ser coherentes con el código actual y no contener secretos.
 
-Cuando corresponda, mantÃ©n:
+Cuando corresponda, mantén:
 
 * `README.md`;
 * variables requeridas;
-* comandos de ejecuciÃ³n;
+* comandos de ejecución;
 * estructura del proyecto;
-* decisiones tÃ©cnicas;
+* decisiones técnicas;
 * procedimiento de despliegue;
-* procedimiento de recuperaciÃ³n;
+* procedimiento de recuperación;
 * limitaciones conocidas.
 
 ---
 
-## 14. ValidaciÃ³n antes de finalizar
+## 14. Validación antes de finalizar
 
 Antes de considerar terminada una tarea:
 
@@ -375,23 +375,23 @@ Antes de considerar terminada una tarea:
 * comprueba que no se hayan agregado secretos;
 * ejecuta el formateador configurado;
 * ejecuta el linter configurado;
-* ejecuta la verificaciÃ³n de tipos si existe;
+* ejecuta la verificación de tipos si existe;
 * ejecuta las pruebas pertinentes;
 * realiza una prueba de humo;
-* verifica que la documentaciÃ³n siga siendo coherente.
+* verifica que la documentación siga siendo coherente.
 
-Usa las herramientas existentes del proyecto. No incorpores herramientas nuevas solo para completar una validaciÃ³n menor.
+Usa las herramientas existentes del proyecto. No incorpores herramientas nuevas solo para completar una validación menor.
 
 ---
 
-## 15. ComunicaciÃ³n de resultados
+## 15. Comunicación de resultados
 
 Al finalizar una tarea, informa:
 
 1. Objetivo o problema abordado.
 2. Archivos modificados.
 3. Cambios realizados.
-4. Decisiones tÃ©cnicas relevantes.
+4. Decisiones técnicas relevantes.
 5. Comandos ejecutados.
 6. Pruebas y resultados.
 7. Riesgos, limitaciones o validaciones pendientes.
@@ -407,25 +407,53 @@ Distingue claramente entre:
 
 ---
 
-## 16. DefiniciÃ³n de terminado
+## 16. Definición de terminado
 
 Una tarea se considera terminada cuando:
 
-* el requerimiento estÃ¡ implementado;
+* el requerimiento está implementado;
 * el comportamiento esperado fue validado;
-* los errores relevantes estÃ¡n controlados;
-* el cÃ³digo es coherente con la estructura existente;
+* los errores relevantes están controlados;
+* el código es coherente con la estructura existente;
 * las pruebas pertinentes pasan o sus limitaciones fueron declaradas;
-* la documentaciÃ³n necesaria fue actualizada;
+* la documentación necesaria fue actualizada;
 * el diff contiene solamente cambios relacionados;
 * no se incorporaron secretos;
-* los riesgos residuales estÃ¡n documentados.
+* los riesgos residuales están documentados.
 
 ---
 
 ## 17. Información específica del proyecto
 
 Completar esta sección en cada repositorio.
+
+### Base de plantilla
+
+Este proyecto debe mantenerse compatible con la estructura y reglas de la plantilla `codex-python-app` de `C:\rutinas-local\gen-ai-templates`, ajustada al contexto real de `obtener-dominios-nic-chile`.
+
+La plantilla considera que `README.md` conserve una sección resumida `Trazabilidad de agentes` con estos campos cuando corresponda:
+
+* Proyecto creado con.
+* Modelo/agente inicial.
+* Entorno inicial.
+* Fecha de creación.
+* Plantilla utilizada.
+* Última actualización asistida por IA.
+
+El historial completo de intervenciones asistidas por IA debe mantenerse en `docs/BITACORA_AGENTES.md`. No inventar valores de modelo, versión, entorno ni fecha; si no se pueden verificar, registrar `pendiente-de-verificación`.
+
+### Estructura base esperada
+
+La plantilla `codex-python-app` considera esta estructura base:
+
+* `app/`: código fuente principal.
+* `docs/`: contexto, decisiones, bitácoras y pendientes.
+* `entrada/`: archivos de entrada no versionados salvo excepciones explícitas.
+* `salida/`: resultados generados no versionados salvo excepciones explícitas.
+* `logs/`: logs locales no versionados.
+* `tools/`: scripts auxiliares del proyecto.
+
+En este proyecto también existe `archivo/` para históricos CSV operacionales y checkpoints. Tratarlo como directorio de datos locales no versionables salvo archivos de ejemplo o marcadores explícitamente permitidos por `.gitignore`.
 
 ### Entorno
 
@@ -496,7 +524,7 @@ Todo agente LLM, Codex, ChatGPT o asistente integrado que cree, modifique o cont
 
 1. Leer `README.md`, `AGENTS.md` y `docs/CONTEXTO_PROYECTO.md` antes de proponer cambios relevantes.
 2. Registrar intervenciones relevantes en `docs/BITACORA_AGENTES.md`.
-3. Actualizar en `README.md` solo la sección resumida `Trazabilidad de agentes` cuando corresponda.
+3. Actualizar en `README.md` solo la sección resumida `Trazabilidad de agentes` cuando corresponda, preservando los campos definidos por la plantilla `codex-python-app`.
 4. No inventar nombre, versión ni modelo del agente.
 5. Si la versión/modelo no puede verificarse, registrar `pendiente-de-verificación`.
 6. No registrar secretos, tokens, credenciales, rutas sensibles, datos personales ni información confidencial.
