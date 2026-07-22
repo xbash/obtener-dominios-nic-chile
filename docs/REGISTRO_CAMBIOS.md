@@ -1,8 +1,17 @@
 ﻿# Registro de cambios
 
-Fecha de consolidacion: 2026-07-20
+Fecha de consolidacion: 2026-07-22
 
 Este registro resume el trabajo reciente. Para versionado formal, revisar tambien `CHANGELOG.md` y el diff real del repositorio.
+
+
+## Actualizacion de sesion 2026-07-22
+
+- Se actualizaron los listados de dominios registrados y eliminados.
+- Se corrigio problema de encoding (mojibake) en AGENTS.md.
+- Se verifico que no hubiese otros archivos con el mismo problema de encoding.
+- Se elimino bloque de merge conflict remanente al final de README.md.
+- Se subieron los cambios a GitHub.
 
 ## Actualizacion final de sesion 2026-07-20
 
