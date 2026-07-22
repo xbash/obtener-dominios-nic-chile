@@ -166,3 +166,16 @@ Ver [`SECURITY.md`](SECURITY.md).
 ## Licencia
 
 Este proyecto se distribuye bajo GNU GPLv3. Ver [`LICENSE`](LICENSE).
+
+## Trazabilidad de agentes
+
+| Campo | Valor |
+|---|---|
+| Proyecto creado con | ChatGPT Codex |
+| Modelo/agente inicial | pendiente-de-verificación |
+| Entorno inicial | VSCode + Codex Extension |
+| Fecha de creacion | pendiente-de-verificación |
+| Plantilla utilizada | codex-python-app |
+| Ultima actualizacion asistida por IA | 2026-07-22, Gemini 3.1 Pro |
+
+Para el historial completo de intervenciones asistidas por IA, revisar docs/BITACORA_AGENTES.md.
