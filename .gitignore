@@ -27,6 +27,3 @@ smoke-*.txt
 *.log
 logs/
 descargas/
-
-# Copias locales de skills reutilizables, no fuente activa del proyecto
-.agents/_copias-reutilizables-no-usar/

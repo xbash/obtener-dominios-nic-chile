@@ -489,3 +489,16 @@ python -c "import ast,pathlib; files=list(pathlib.Path('app').glob('*.py'))+[pat
 * No publicar ni versionar historicos reales, respaldos, candidatos locales, logs, descargas, caches ni copias archivadas de skills.
 * Mantener `.agents/skills` como adaptadores locales; no duplicar skills globales completas salvo decision documentada.
 * Tratar las columnas comerciales como heuristicas locales, no como metricas SEO, reputacion, valor de mercado ni revision legal.
+
+## Trazabilidad de agentes LLM
+
+Todo agente LLM, Codex, ChatGPT o asistente integrado que cree, modifique o continúe este proyecto debe:
+
+1. Leer `README.md`, `AGENTS.md` y `docs/CONTEXTO_PROYECTO.md` antes de proponer cambios relevantes.
+2. Registrar intervenciones relevantes en `docs/BITACORA_AGENTES.md`.
+3. Actualizar en `README.md` solo la sección resumida `Trazabilidad de agentes` cuando corresponda.
+4. No inventar nombre, versión ni modelo del agente.
+5. Si la versión/modelo no puede verificarse, registrar `pendiente-de-verificación`.
+6. No registrar secretos, tokens, credenciales, rutas sensibles, datos personales ni información confidencial.
+7. Si la intervención cambia arquitectura, dependencias, seguridad, estructura de datos o comportamiento funcional, registrar también la decisión en `docs/DECISIONES_TECNICAS.md`.
+8. Si quedan tareas abiertas, actualizar `docs/PENDIENTES.md`.
