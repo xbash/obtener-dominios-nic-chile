@@ -2,7 +2,7 @@
 
 Fecha de consolidacion: 2026-07-20
 
-Ultima actualizacion de sesion: 2026-07-20.
+Ultima actualizacion de sesion: 2026-07-26, cierre documental.
 
 ## CSV como formato historico principal
 
@@ -102,6 +102,14 @@ Motivo: esos archivos contienen historicos reales, respaldos o estado local de e
 Decision: dejar `LICENSE` con el texto completo GPLv3 y eliminar placeholders de contacto en `SECURITY.md`.
 
 Motivo: GitHub y lectores externos deben encontrar terminos de licencia completos y una politica de reporte sin correos ficticios.
+
+## Cierre documental de sesiones
+
+Decision: registrar cierres de sesion, trazabilidad y propuestas de memoria en `docs/*` y `docs/BITACORA_AGENTES.md`, no en `AGENTS.md`.
+
+Motivo: `AGENTS.md` debe quedar como archivo de reglas persistentes y de bajo ruido; las bitacoras absorben el detalle historico de cada sesion.
+
+Trade-off: requiere mantener sincronizados los docs de continuidad en cada cierre.
 
 ## Pendiente tecnico
 

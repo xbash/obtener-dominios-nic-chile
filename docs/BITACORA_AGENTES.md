@@ -10,6 +10,7 @@ Cada vez que un agente cree, modifique o continúe este proyecto, debe registrar
 
 | Fecha | Agente/herramienta | Modelo/versión | Entorno | Acción | Archivos afectados | Observaciones |
 |---|---|---|---|---|---|---|
+| 2026-07-26 | ChatGPT Codex | pendiente-de-verificacion | Codex CLI | Consolidacion de cierre de sesion y actualizacion de docs de continuidad | docs/CONTEXTO_PROYECTO.md, docs/DECISIONES_TECNICAS.md, docs/PENDIENTES.md, docs/REGISTRO_CAMBIOS.md, docs/BITACORA_CODEX.md, docs/BITACORA_AGENTES.md | Se verifico que el worktree estaba limpio y que la rama local seguia en sync con origin/main; no se tocaron CSV operacionales ni codigo. |
 | 2026-07-22 | ChatGPT Codex | pendiente-de-verificacion | Codex CLI | Actualizacion de reglas de agente desde plantilla codex-python-app | AGENTS.md, docs/BITACORA_AGENTES.md | Se incorporo trazabilidad resumida esperada en README.md y estructura base de plantilla; no se modifico codigo. |
 | 2026-07-22 | ChatGPT Codex | pendiente-de-verificación | VSCode + Codex Extension | Inicialización del proyecto | AGENTS.md, README.md, docs/* | Creación de estructura base |
 | 2026-07-22 | Gemini / Antigravity | 3.1 Pro | Antigravity IDE | Actualización de listas, corrección de mojibake y limpieza | archivo/*.csv, AGENTS.md, README.md | Se sincronizaron los dominios. Se arregló codificación en AGENTS.md y restos de conflicto en README.md. |

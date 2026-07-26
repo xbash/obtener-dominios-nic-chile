@@ -2,7 +2,13 @@
 
 Fecha de consolidacion: 2026-07-22
 
-Ultima actualizacion de sesion: 2026-07-22.
+Ultima actualizacion de sesion: 2026-07-26, cierre documental.
+
+## Cierre de sesion 2026-07-26
+
+- Confirmar si alguna de las memorias durables propuestas debe guardarse de forma real en una sesion futura.
+- Revisar en una proxima pasada si conviene añadir una nota corta al `AGENTS.md` que remita a las bitacoras de cierre, o dejar ese detalle solo en `docs/`.
+- Si vuelven a realizarse cambios funcionales, revalidar `git status --short` y documentar los comandos utiles ejecutados.
 
 ## Alta prioridad
 

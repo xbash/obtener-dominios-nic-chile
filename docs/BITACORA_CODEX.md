@@ -2,7 +2,14 @@
 
 Fecha de consolidacion: 2026-07-20
 
-Ultima actualizacion de sesion: 2026-07-20.
+Ultima actualizacion de sesion: 2026-07-26, cierre documental.
+
+## Sesion de cierre 2026-07-26
+
+- Se revisaron `AGENTS.md`, `README.md`, `docs/*` y `.agents/skills/inicializar-proyecto-codex/SKILL.md` antes de consolidar el cierre.
+- Se confirmo `git status --short` limpio y sincronizacion observada entre `main` y `origin/main`.
+- Se dejo constancia de que esta sesion no modifico codigo ni CSV operacionales.
+- Se registro que las memorias durables propuestas siguen pendientes de confirmacion del usuario.
 
 ## Rol aplicado
 
@@ -153,3 +160,11 @@ Se trabajo como agente de codigo con criterio de ingenieria aplicada: cambios lo
 - Alcance: Solo este repositorio.
 - Riesgo si se guarda: Medio; debe actualizarse cuando cambie la version.
 - Alternativa si debe ir mejor en AGENTS.md o docs/: Mejor en `docs/DECISIONES_TECNICAS.md`; memory pendiente de confirmacion del usuario.
+
+### Propuesta 9
+
+- Memory propuesta: Antes de cerrar sesiones en este repositorio, revisar y actualizar las bitacoras de continuidad; no guardar memorias reales sin confirmacion explicita del usuario.
+- Motivo: Mantiene el cierre auditable y evita depender de contexto implicito.
+- Alcance: Este repositorio y sesiones futuras con agentes.
+- Riesgo si se guarda: Bajo; describe un flujo de trabajo mas que un hecho tecnico.
+- Alternativa si debe ir mejor en `AGENTS.md` o docs/: Mejor en `AGENTS.md` si se quiere volver regla permanente; si no, dejarlo como nota de proceso en `docs/BITACORA_CODEX.md`.
