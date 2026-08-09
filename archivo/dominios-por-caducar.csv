@@ -22389,3 +22389,4 @@ fecha_consulta,fuente,fecha_registro,dominio,fecha_expiracion,dias_restantes,est
 2026-07-25,registrados,2025-08-24,aaroneventos.cl,2026-08-21,27,por_vencer,12,False,False,True,aaroneventos,indeterminado,bajo
 2026-07-25,registrados,2025-08-24,happydeliveryapp.cl,2026-08-23,29,por_vencer,16,False,False,True,delivery,comercio|tecnologia,bajo
 2026-07-25,registrados,2025-08-24,expohispanidad.cl,2026-08-23,29,por_vencer,14,False,False,True,expohispanidad,indeterminado,bajo
+2026-08-09,eliminados,2026-04-09,unicon.cl,2026-03-02,-160,caducado,6,False,False,True,unicon,indeterminado,bajo

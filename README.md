@@ -6,8 +6,8 @@ El proyecto esta orientado a analisis operativo de dominios para seguimiento, pr
 
 ## Que incluye
 
-- `dominios-nic.py`: consulta dominios registrados o eliminados.
-- `dominios-por-caducar.py`: revisa dominios con expiracion cercana.
+- `dominios-nic.py`: wrapper del flujo de consulta de dominios registrados o eliminados.
+- `dominios-por-caducar.py`: wrapper del flujo de revision de dominios con expiracion cercana.
 - `app/main.py`: despachador central para ambos comandos.
 - `app/consulta_dominios_core.py`: consulta NIC y persistencia de historicos.
 - `app/entrada_dominios.py`: lectura de entradas CSV/TXT.
@@ -34,7 +34,7 @@ cd obtener-dominios-nic-chile
 Periodos soportados: `1h`, `1d`, `1w`, `1m`.
 
 ```powershell
-python dominios-nic.py --modo registrados --periodo 1d
+python -m app.main dominios-nic --modo registrados --periodo 1d
 python -m app.main dominios-nic --modo registrados --periodo 1m
 ```
 
@@ -51,7 +51,7 @@ Para registrados, `fecha_registro` se obtiene desde el CSV de NIC Chile cuando e
 Periodos soportados: `1d`, `1s`.
 
 ```powershell
-python dominios-nic.py --modo eliminados --periodo 1d
+python -m app.main dominios-nic --modo eliminados --periodo 1d
 python -m app.main dominios-nic --modo eliminados --periodo 1s
 ```
 
@@ -64,7 +64,7 @@ fecha_consulta,dominio
 ### Dominios por caducar
 
 ```powershell
-python dominios-por-caducar.py --modo descubrir --entrada archivo\dominios-nic-registrados-mes.csv --orden normal --limite 1000 --hilos 18 --progreso si --checkpoint archivo\checkpoint-registrados-mes.json
+python -m app.main dominios-por-caducar --modo descubrir --entrada archivo\dominios-nic-registrados-mes.csv --orden normal --limite 1000 --hilos 18 --progreso si --checkpoint archivo\checkpoint-registrados-mes.json
 ```
 
 Tambien puede tomar dominios eliminados:
@@ -176,6 +176,6 @@ Este proyecto se distribuye bajo GNU GPLv3. Ver [`LICENSE`](LICENSE).
 | Entorno inicial | VSCode + Codex Extension |
 | Fecha de creacion | pendiente-de-verificación |
 | Plantilla utilizada | codex-python-app |
-| Ultima actualizacion asistida por IA | 2026-07-22, Gemini 3.1 Pro |
+| Ultima actualizacion asistida por IA | 2026-07-26, ChatGPT Codex, pendiente-de-verificacion |
 
 Para el historial completo de intervenciones asistidas por IA, revisar docs/BITACORA_AGENTES.md.
