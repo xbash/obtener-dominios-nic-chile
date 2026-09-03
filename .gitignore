@@ -18,6 +18,9 @@ archivo/*.tmp
 archivo/*.log
 archivo/*checkpoint*.json
 archivo/*checkpoint*.json.tmp
+archivo/dominios-nic-eliminados-semana.csv
+archivo/dominios-nic-registrados-mes.csv
+archivo/dominios-por-caducar.csv
 
 # Salidas temporales, respaldos y logs
 *.checkpoint.json
