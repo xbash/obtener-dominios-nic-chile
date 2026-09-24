@@ -10,6 +10,8 @@ import csv
 import io
 import re
 import sys
+import time
+import uuid
 from datetime import datetime
 from typing import TypedDict
 
@@ -26,6 +28,7 @@ from app.configuracion import (
     ARCHIVO_DOMINIOS_REGISTRADOS_MES,
     VERSION_PROYECTO,
 )
+from app.logging_dominios import obtener_logger
 
 REGEX_WHOIS = re.compile(r"whois\.do\?d=([^\s<>'\"/,&]+\.cl)", flags=re.IGNORECASE)
 REGEX_TOKEN = re.compile(r"([^\s<>'\"/,]+\.cl)\b", flags=re.IGNORECASE)
@@ -243,9 +246,16 @@ def archivo_salida_por_defecto(modo: str, periodo: str) -> str:
 
 
 def ejecutar_tarea(modo: str, periodo: str, ruta_salida: str, sin_punycode: bool) -> int:
+    logger = obtener_logger()
+    run_id = uuid.uuid4().hex[:8]
+    extra = {"run_id": run_id}
+    inicio = time.monotonic()
+
     configuracion = CONFIG_TAREAS[modo]
     url_txt = configuracion["url_txt"].format(periodo=periodo)
     url_html = configuracion["url_html"].format(periodo=periodo)
+
+    logger.info("inicio modo=%s periodo=%s salida=%s", modo, periodo, ruta_salida, extra=extra)
 
     fechas_registro: dict[str, str] = {}
     try:
@@ -259,6 +269,7 @@ def ejecutar_tarea(modo: str, periodo: str, ruta_salida: str, sin_punycode: bool
             fuente = f"TXT ({periodo})"
     except Exception as error_txt:
         print(f"[warn] Fallo TXT {periodo}: {error_txt}. Intentando HTML...", file=sys.stderr)
+        logger.warning("fallback motivo=%s", error_txt, extra=extra)
         try:
             texto_html = obtener_texto(url_html)
             dominios_encontrados = extraer_dominios(texto_html)
@@ -267,6 +278,9 @@ def ejecutar_tarea(modo: str, periodo: str, ruta_salida: str, sin_punycode: bool
                 fechas_registro = {canonizar_dominio(dominio): fecha_santiago_iso() for dominio in dominios_encontrados}
         except Exception as error_html:
             print(f"[error] Fallo HTML {periodo}: {error_html}", file=sys.stderr)
+            duracion = time.monotonic() - inicio
+            logger.error("error fuente=HTML detalle=%s duracion=%.2fs", error_html, duracion, extra=extra)
+            logger.info("fin modo=%s periodo=%s resultado=error duracion=%.2fs", modo, periodo, duracion, extra=extra)
             return 2
 
     if not dominios_encontrados:
@@ -304,6 +318,21 @@ def ejecutar_tarea(modo: str, periodo: str, ruta_salida: str, sin_punycode: bool
         print(f"[ok] {len(dominios_nuevos)} dominios agregados (fecha {fecha}).")
     else:
         print("[ok] No habia dominios nuevos para agregar.")
+
+    duracion = time.monotonic() - inicio
+    logger.info(
+        "fin modo=%s periodo=%s resultado=ok fuente=%s obtenidos=%d existentes=%d "
+        "nuevos=%d fechas_registro_actualizadas=%d duracion=%.2fs",
+        modo,
+        periodo,
+        fuente,
+        len(claves_obtenidas),
+        len(claves_existentes),
+        len(dominios_nuevos),
+        actualizados,
+        duracion,
+        extra=extra,
+    )
 
     return 0
 

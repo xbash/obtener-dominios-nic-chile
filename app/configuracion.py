@@ -23,3 +23,9 @@ ARCHIVO_DOMINIOS_REGISTRADOS_MES = DIRECTORIO_ARCHIVO / "dominios-nic-registrado
 ARCHIVO_DOMINIOS_ELIMINADOS_SEMANA = DIRECTORIO_ARCHIVO / "dominios-nic-eliminados-semana.csv"
 ARCHIVO_DOMINIOS_POR_CADUCAR = DIRECTORIO_ARCHIVO / "dominios-por-caducar.csv"
 ARCHIVO_CHECKPOINT_POR_CADUCAR = DIRECTORIO_ARCHIVO / "dominios-por-caducar.checkpoint.json"
+
+# Logging persistente (ver docs/04_DECISIONES_PENDIENTES.md).
+NOMBRE_LOGGER = "nic_chile"
+ARCHIVO_LOG = DIRECTORIO_LOGS / "consulta_dominios.log"
+LOG_MAX_BYTES = 5 * 1024 * 1024  # 5 MB por archivo (D-10).
+LOG_BACKUP_COUNT = 3  # Hasta 3 archivos rotados (D-10).
