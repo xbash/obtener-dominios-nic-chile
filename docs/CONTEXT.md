@@ -4,6 +4,13 @@ Fecha de consolidacion: 2026-07-20
 
 Ultima actualizacion de sesion: 2026-07-26, cierre documental y consolidacion de trazabilidad.
 
+## Continuidad compacta — 2026-09-25 (ejecutado)
+
+- Sesión de análisis + ejecución de plan sobre README.md y CONTRIBUTING.md.
+- Commit `737bc4a` en `main` (rama local, no pusheado a `origin` en esta sesión).
+- Cambios: validación completa en README; campos CSV apuntan a fuente de verdad; CONTRIBUTING alineado a v2.3.
+- Pendientes preexistentes de git (`AGENTS.md`, `docs/`, `archivo/*.csv`) no tocados en esta sesión; siguen modificados sin commitear.
+
 ## Objetivo actual
 
 `obtener-dominios-nic-chile` es un conjunto de scripts Python para recolectar y mantener historicos de dominios `.cl` recientemente registrados o eliminados desde NIC Chile, revisar candidatos proximos a caducar y preparar una base historica util para analisis posterior de venta, reventa, subasta o priorizacion comercial.

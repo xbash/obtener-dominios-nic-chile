@@ -1,5 +1,16 @@
 ﻿# Pendientes
 
+> Continuidad compacta — 2026-09-25 (sesión cerrada)
+>
+> Plan README/CONTRIBUTING ejecutado y commiteado (`737bc4a`). Estado limpio para documentación de uso.
+>
+> Pendientes activos:
+> - `git push origin main` — no ejecutado en esta sesión; el commit existe solo en local.
+> - Archivos preexistentes modificados sin commitear: `AGENTS.md`, `docs/CONTEXT.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md`, `archivo/dominios-nic-eliminados-semana.csv`, `archivo/dominios-nic-registrados-mes.csv`. Revisar antes de próximo push.
+> - CONTRIBUTING.md actualizado, pero sección "Estilo" conserva "Las versiones del script deben quedar visibles en el encabezado del archivo" — verificar si aplica a wrappers delgados o solo a módulos `app/`.
+>
+> Próxima sesión puede iniciar directamente con operación o pruebas; documentación base está alineada con v2.3.
+
 Fecha de consolidacion: 2026-07-22
 
 Ultima actualizacion de sesion: 2026-07-26, cierre documental.

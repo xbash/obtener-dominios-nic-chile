@@ -4,6 +4,20 @@ Fecha de consolidacion: 2026-07-20
 
 Ultima actualizacion de sesion: 2026-07-26, cierre documental.
 
+## Continuidad compacta — 2026-09-25 (ejecutado)
+
+Estado: plan analizado y ejecutado. Commit `737bc4a` en `main`.
+
+Cambios aplicados:
+- README: bloque de validación local completo (3 comandos, alineado con AGENTS.md).
+- README: salidas de caducidad referencian `app/salida_dominios.py` como fuente de verdad.
+- README: advertencia en enlace a CONTRIBUTING.md por contenido desactualizado.
+- CONTRIBUTING: TSV → CSV en principios y convenciones.
+- CONTRIBUTING: comandos actualizados a `python -m app.main`; puntos de entrada y nombres de historicos corregidos.
+
+Decisión editorial tomada: versión no expuesta en README (evita duplicación con `app/configuracion.py`).
+Enlace a CONTRIBUTING.md conservado con advertencia (opción A); CONTRIBUTING.md actualizado en el mismo commit.
+
 ## CSV como formato historico principal
 
 Decision: usar CSV para historicos y salidas principales.
