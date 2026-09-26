@@ -1,61 +1,42 @@
-# obtener-dominios-nic-chile
+# Obtener dominios de NiC Chile
 
-Herramientas en Python para consultar dominios `.cl` recientemente registrados o eliminados en NIC Chile, mantener historicos CSV y revisar candidatos con expiracion cercana.
+Herramientas CLI en Python para consultar dominios `.cl` registrados o eliminados en NIC Chile, conservar históricos CSV locales y revisar candidatos próximos a caducar.
 
-El proyecto esta orientado a analisis operativo de dominios para seguimiento, priorizacion comercial, reventa o subasta. Las columnas comerciales incluidas son heuristicas locales; no son metricas de mercado, SEO, reputacion ni revision legal o de marcas.
-
-## Que incluye
-
-- `dominios-nic.py`: wrapper del flujo de consulta de dominios registrados o eliminados.
-- `dominios-por-caducar.py`: wrapper del flujo de revision de dominios con expiracion cercana.
-- `app/main.py`: despachador central para ambos comandos.
-- `app/consulta_dominios_core.py`: consulta NIC y persistencia de historicos.
-- `app/entrada_dominios.py`: lectura de entradas CSV/TXT.
-- `app/salida_dominios.py`: escritura de resultados enriquecidos.
-- `app/enriquecimiento_dominios.py`: heuristicas locales de priorizacion.
-- `app/checkpoint_dominios.py`: checkpoint para corridas largas.
+Las columnas comerciales son heurísticas locales. No representan métricas de mercado, SEO, reputación, marcas ni evaluación legal.
 
 ## Requisitos
 
 - Python 3.10 o superior.
-- Conexion a internet para consultar NIC Chile.
-- No requiere dependencias externas de Python.
+- Conexión a internet para consultar NIC Chile.
+- No se requieren dependencias externas de Python.
 
-## Uso rapido
+## Uso básico
 
-Desde la raiz del proyecto:
-
-```powershell
-cd obtener-dominios-nic-chile
-```
+Ejecuta los comandos desde la raíz del repositorio.
 
 ### Dominios registrados
 
-Periodos soportados: `1h`, `1d`, `1w`, `1m`.
+Períodos disponibles: `1h`, `1d`, `1w` y `1m`.
 
 ```powershell
 python -m app.main dominios-nic --modo registrados --periodo 1d
-python -m app.main dominios-nic --modo registrados --periodo 1m
 ```
 
-Salida CSV:
+La salida conserva el encabezado:
 
 ```csv
 fecha_consulta,dominio,fecha_registro
 ```
 
-Para registrados, `fecha_registro` se obtiene desde el CSV de NIC Chile cuando esta disponible.
-
 ### Dominios eliminados
 
-Periodos soportados: `1d`, `1s`.
+Períodos disponibles: `1d` y `1s`.
 
 ```powershell
-python -m app.main dominios-nic --modo eliminados --periodo 1d
 python -m app.main dominios-nic --modo eliminados --periodo 1s
 ```
 
-Salida CSV:
+La salida conserva el encabezado:
 
 ```csv
 fecha_consulta,dominio
@@ -63,119 +44,42 @@ fecha_consulta,dominio
 
 ### Dominios por caducar
 
-```powershell
-python -m app.main dominios-por-caducar --modo descubrir --entrada archivo\dominios-nic-registrados-mes.csv --orden normal --limite 1000 --hilos 18 --progreso si --checkpoint archivo\checkpoint-registrados-mes.json
-```
-
-Tambien puede tomar dominios eliminados:
+Usa un histórico CSV como entrada. Por ejemplo:
 
 ```powershell
-python -m app.main dominios-por-caducar --modo descubrir --entrada archivo\dominios-nic-eliminados-semana.csv --orden inverso --limite 1000 --hilos 18 --progreso si
+python -m app.main dominios-por-caducar --modo descubrir --entrada archivo\dominios-nic-registrados-mes.csv --limite 1000 --progreso si
 ```
 
-Salida CSV:
+La salida es un CSV enriquecido con fechas, estado y heurísticas locales. Por defecto se escriben los estados relevantes para caducidad; `--incluir-todos` incluye también estados diagnósticos.
 
-```csv
-fecha_consulta,fuente,fecha_registro,dominio,fecha_expiracion,dias_restantes,estado,longitud,contiene_guion,contiene_numero,solo_letras,keyword_principal,sector_probable,riesgo_reventa
-```
+## Salidas y datos locales
 
-Estados posibles:
+Las rutas por defecto están bajo `archivo\`. Los históricos, checkpoints, logs, descargas y candidatos locales pueden contener datos operacionales y no deben publicarse sin revisión.
 
-- `por_vencer`
-- `vence_hoy`
-- `caducado`
-- `fuera_de_umbral`
-- `sin_fecha`
-- `no_renovable`
-- `error`
+El CSV de caducidad incluye campos como `fecha_expiracion`, `dias_restantes`, `estado`, `longitud`, `keyword_principal`, `sector_probable` y `riesgo_reventa`. El encabezado completo se define en [app/salida_dominios.py](app/salida_dominios.py). Usa `--help` para ver opciones de filtrado y exclusión de campos.
 
-Por defecto se escriben solo resultados relevantes para caducidad (`por_vencer`, `vence_hoy`, `caducado`). Usa `--incluir-todos` para diagnosticar tambien `sin_fecha`, `no_renovable`, `fuera_de_umbral` y `error`.
+## Ayuda y documentación
 
-## Flujo recomendado
-
-1. Actualizar registrados o eliminados:
-
-```powershell
-python -m app.main dominios-nic --modo registrados --periodo 1m
-python -m app.main dominios-nic --modo eliminados --periodo 1s
-```
-
-2. Revisar caducidad por lotes:
-
-```powershell
-python -m app.main dominios-por-caducar --modo descubrir --entrada archivo\dominios-nic-registrados-mes.csv --orden normal --limite 10000 --hilos 18 --progreso si --checkpoint archivo\checkpoint-registrados-mes.json
-```
-
-3. Post-procesar el CSV resultante en planilla, Python, base de datos u otra herramienta.
-
-## Archivos generados
-
-- `archivo\dominios-nic-registrados-hora.csv`
-- `archivo\dominios-nic-registrados-dia.csv`
-- `archivo\dominios-nic-registrados-semana.csv`
-- `archivo\dominios-nic-registrados-mes.csv`
-- `archivo\dominios-nic-eliminados-dia.csv`
-- `archivo\dominios-nic-eliminados-semana.csv`
-- `archivo\dominios-por-caducar.csv`
-- `archivo\dominios-por-caducar.checkpoint.json`
-
-## Versiones actuales
-
-- `dominios-nic.py`: `v2.3`
-- `dominios-por-caducar.py`: `v2.3`
-
-## Validacion local
-
-Validacion minima sin escribir bytecode:
-
-```powershell
-$env:PYTHONDONTWRITEBYTECODE='1'
-python -c "import app.consulta_dominios_core; import app.entrada_dominios; import app.dominios_por_caducar; print('imports ok')"
-```
-
-Ayuda de comandos:
+Consulta las opciones completas de cada CLI:
 
 ```powershell
 python -m app.main dominios-nic --help
 python -m app.main dominios-por-caducar --help
 ```
 
-## Notas antes de publicar
+- [Decisiones técnicas](docs/DECISIONS.md)
+- [Registro de cambios](CHANGELOG.md)
+- [Guía de contribución](CONTRIBUTING.md) — nota: contiene referencias que pueden estar desactualizadas; los comandos actuales están en `--help`
+- [Política de seguridad](SECURITY.md)
+- [Licencia GPLv3](LICENSE)
 
-- Revisar que no se incluyan secretos, tokens, logs, checkpoints, respaldos o historicos privados.
-- Revisar `.gitignore` antes de subir a GitHub.
-- Las salidas historicas en `archivo/` pueden contener datos operacionales; decide si deben publicarse completas, como muestra o no publicarse.
-- No presentar las heuristicas comerciales como valores comprobados.
+## Validación local
 
-## Documentacion adicional
+Validación mínima sin escribir bytecode:
 
-- `docs/CONTEXTO_PROYECTO.md`
-- `docs/DECISIONES_TECNICAS.md`
-- `docs/PENDIENTES.md`
-- `docs/REGISTRO_CAMBIOS.md`
-- `docs/BITACORA_CODEX.md`
-
-## Colaboracion
-
-Ver [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
-## Seguridad
-
-Ver [`SECURITY.md`](SECURITY.md).
-
-## Licencia
-
-Este proyecto se distribuye bajo GNU GPLv3. Ver [`LICENSE`](LICENSE).
-
-## Trazabilidad de agentes
-
-| Campo | Valor |
-|---|---|
-| Proyecto creado con | ChatGPT Codex |
-| Modelo/agente inicial | pendiente-de-verificación |
-| Entorno inicial | VSCode + Codex Extension |
-| Fecha de creacion | pendiente-de-verificación |
-| Plantilla utilizada | codex-python-app |
-| Ultima actualizacion asistida por IA | 2026-07-26, ChatGPT Codex, pendiente-de-verificacion |
-
-Para el historial completo de intervenciones asistidas por IA, revisar docs/BITACORA_AGENTES.md.
+```powershell
+$env:PYTHONDONTWRITEBYTECODE='1'
+python -c "import app.consulta_dominios_core; import app.entrada_dominios; import app.dominios_por_caducar; print('imports ok')"
+python -m app.main dominios-nic --help
+python -m app.main dominios-por-caducar --help
+```

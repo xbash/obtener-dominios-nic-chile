@@ -4,8 +4,8 @@ Gracias por colaborar. Este proyecto mantiene una convencion simple:
 
 ## Principios
 
-- Mantener nombres en espanol para scripts, funciones, variables y archivos de salida.
-- No romper el formato TSV de salida ya definido.
+- Mantener nombres en español para scripts, funciones, variables y archivos de salida.
+- No romper el formato CSV de salida ya definido.
 - Evitar refactors amplios cuando un cambio puntual resuelve el problema.
 - Seguir el estilo y la estructura ya existente antes de introducir nuevas capas.
 
@@ -14,9 +14,9 @@ Gracias por colaborar. Este proyecto mantiene una convencion simple:
 1. Crear una rama de trabajo si el repositorio ya esta versionado.
 2. Hacer cambios pequenos y trazables.
 3. Ejecutar verificacion local minima:
-   - `python -m py_compile dominios-nic.py`
-   - `python -m py_compile dominios-por-caducar.py`
-   - una corrida de humo con pocos dominios
+   - `python -m app.main dominios-nic --help`
+   - `python -m app.main dominios-por-caducar --help`
+   - una corrida de humo con pocos dominios (usar `--limite` bajo y `--progreso si`)
 4. Actualizar `README.md` y `CHANGELOG.md` si cambia el uso o el comportamiento.
 5. No dejar archivos temporales ni checkpoints en el repositorio.
 
@@ -37,25 +37,28 @@ Gracias por colaborar. Este proyecto mantiene una convencion simple:
 
 ## Verificacion sugerida
 
-- `python -m py_compile dominios-nic.py`
-- `python -m py_compile dominios-por-caducar.py`
-- `python dominios-por-caducar.py --help`
-- corrida de humo con `--limite` bajo y `--progreso si`
+```powershell
+$env:PYTHONDONTWRITEBYTECODE='1'
+python -m app.main dominios-nic --help
+python -m app.main dominios-por-caducar --help
+```
+
+Luego una corrida de humo con `--limite` bajo y `--progreso si`.
 
 ## Convenciones del proyecto
 
-- Scripts:
-  - `dominios-nic.py`
-  - `dominios-por-caducar.py`
-- Historicos:
-  - `dominios-nic-registrados-mes.txt`
-  - `dominios-nic-eliminados-semana.txt`
-  - `dominios-por-caducar.txt`
+- Puntos de entrada:
+  - `python -m app.main dominios-nic`
+  - `python -m app.main dominios-por-caducar`
+- Historicos CSV:
+  - `dominios-nic-registrados-mes.csv`
+  - `dominios-nic-eliminados-semana.csv`
+  - `dominios-por-caducar.csv`
 - Checkpoint:
   - `dominios-por-caducar.checkpoint.json`
 
 ## Antes de abrir un PR
 
-- Revisar que no haya archivos temporales.
+- Revisar que no haya archivos temporales, cachés, logs ni checkpoints locales.
 - Confirmar que el changelog refleje el cambio.
-- Asegurar que el README siga explicando como ejecutar los scripts.
+- Asegurar que README y documentación relevante reflejen el cambio en uso, comportamiento u opciones.
