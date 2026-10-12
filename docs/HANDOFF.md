@@ -1,71 +1,31 @@
-﻿# Pendientes
+﻿# Relevo operativo
 
-> Continuidad compacta — 2026-09-25 (sesión cerrada)
->
-> Plan README/CONTRIBUTING ejecutado y commiteado (`737bc4a`). Estado limpio para documentación de uso.
->
-> Pendientes activos:
-> - `git push origin main` — no ejecutado en esta sesión; el commit existe solo en local.
-> - Archivos preexistentes modificados sin commitear: `AGENTS.md`, `docs/CONTEXT.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md`, `archivo/dominios-nic-eliminados-semana.csv`, `archivo/dominios-nic-registrados-mes.csv`. Revisar antes de próximo push.
-> - CONTRIBUTING.md actualizado, pero sección "Estilo" conserva "Las versiones del script deben quedar visibles en el encabezado del archivo" — verificar si aplica a wrappers delgados o solo a módulos `app/`.
->
-> Próxima sesión puede iniciar directamente con operación o pruebas; documentación base está alineada con v2.3.
+Actualizado: 2026-10-12 (America/Santiago).
 
-Fecha de consolidacion: 2026-07-22
+## Decisión de la sesión
 
-Ultima actualizacion de sesion: 2026-07-26, cierre documental.
+El usuario indicó que las acciones correctivas de la auditoría de contratos del 2026-10-11 se aplicarán en otro momento. Esta consolidación registra el estado y los pendientes; no autoriza ejecutar esas acciones, publicar, hacer commit ni modificar los datos locales.
 
-## Cierre de sesion 2026-07-26
+## Pendientes de la auditoría documental
 
-- Confirmar si alguna de las memorias durables propuestas debe guardarse de forma real en una sesion futura.
-- Revisar en una proxima pasada si conviene añadir una nota corta al `AGENTS.md` que remita a las bitacoras de cierre, o dejar ese detalle solo en `docs/`.
-- Si vuelven a realizarse cambios funcionales, revalidar `git status --short` y documentar los comandos utiles ejecutados.
+1. **ACT-01 / DOC-01 — Prioridad P1, requiere decisión del usuario.** Revisar los archivos operacionales que Git ya rastrea: `archivo/dominios-nic-eliminados-semana.csv`, `archivo/dominios-nic-registrados-mes.csv`, `archivo/dominios-por-caducar.csv` y `entrada/candidatos.txt`. Clasificar su contenido y decidir su tratamiento en Git sin borrar copias locales. No se verificó su contenido ni publicación remota.
+2. **ACT-02 / DOC-01 — P1, propuesta lista para revisión posterior.** Ajustar `.gitignore` para cubrir las clases de datos locales definidas en `AGENTS.md`, conservando `.gitkeep` y ejemplos neutros. Verificar con `git check-ignore`. Esto no deja de rastrear archivos ya incorporados.
+3. **ACT-03 / DOC-02 — P1, propuesta lista para revisión posterior.** Corregir referencias y afirmaciones de estado Git en los documentos de continuidad. `CONTEXT.md` y este `HANDOFF.md` quedaron actualizados en esta consolidación; al retomar, comprobar el estado nuevamente y revisar referencias restantes antes de dar la acción por cerrada.
+4. **ACT-04 / DOC-03 — P1, requiere decisión editorial.** Establecer la fuente vigente entre `docs/DECISIONS.md` y `docs/DECISIONES_TECNICAS.md`, y entre los pares de contexto y pendientes; decidir el destino de los documentos archivados y marcar como históricos los diagnósticos de logging previos a su implementación. No mover ni eliminar archivos por inferencia.
+5. **ACT-05 / DOC-04 — P2, requiere decisión del mantenedor.** Definir un canal privado real para reportes en `SECURITY.md` y expectativas de respuesta sostenibles.
+6. **ACT-06 / DOC-05 — P2, propuesta lista para revisión posterior.** Precisar en `CONTRIBUTING.md` la regla de versiones en encabezados frente a `VERSION_PROYECTO` como fuente única.
 
-## Alta prioridad
+## Otros pendientes preexistentes
 
-- Crear pruebas automatizadas sin red para parseo CSV, salida enriquecida, deduplicacion y checkpoint.
-- Revisar `AGENTS.md` completo por mojibake/encoding y ejemplos antiguos; ya se corrigio la regla funcional de formato historico a CSV.
-- Antes de futuras migraciones masivas, registrar conteos previos y posteriores.
-- Decidir si se eliminan las copias archivadas en `.agents/_copias-reutilizables-no-usar/`.
-- Verificar en GitHub que no se publico ningun historico real, backup, candidato local, log o cache.
+- Crear pruebas automatizadas sin red para parseo CSV, deduplicación, salida enriquecida y checkpoint.
+- Decidir si conservar las copias de skills bajo `.agents/_copias-reutilizables-no-usar/`; no eliminarlas por esta consolidación.
 
-## Media prioridad
+## Antes de retomar o publicar
 
-- Agregar post-procesamiento para enriquecer historicos con DNS, HTTP/HTTPS, titulo HTML, parking, redireccion y senales SEO/reputacion con fuente verificable.
-- Evaluar `--checkpoint-cada N` para reducir bloqueos en Windows.
-- Revisar si conviene separar `fecha_consulta` y `fecha_detectado` en futuros modelos.
-- Revisar encoding/mojibake en documentos antiguos si se planea publicacion.
-- Instalar/configurar GitHub CLI (`gh`) si se quiere automatizar creacion de repositorios, autenticacion y PRs.
-- Agregar `.gitattributes` si se quiere controlar LF/CRLF de forma explicita.
+- Releer `AGENTS.md`, `README.md` y `docs/DECISIONS.md`; comprobar `git status -sb`, `git ls-files archivo entrada` y la diferencia real con `origin/main`. El estado anterior es una observación fechada, no una garantía futura.
+- Mantener separados los cambios preexistentes del trabajo nuevo. No abrir ni transformar los CSV operacionales sin propósito y autorización específicos.
+- Resolver el rastreo de datos y revisar el alcance de publicación antes de cualquier commit o push. El árbol ya tenía cambios preexistentes; no se preparó una publicación.
 
-## Baja prioridad
+## Validación de esta consolidación
 
-- Evaluar `pyproject.toml` solo si se decide convertir el proyecto en paquete instalable.
-- Evaluar logs persistentes en `logs/` si el uso operacional crece.
-- Evaluar un historico unificado con columna `tipo_evento`.
-
-## Comandos utiles
-
-```powershell
-python -m app.main dominios-nic --modo registrados --periodo 1h
-python -m app.main dominios-nic --modo registrados --periodo 1d
-python -m app.main dominios-nic --modo registrados --periodo 1w
-python -m app.main dominios-nic --modo registrados --periodo 1m
-python -m app.main dominios-nic --modo eliminados --periodo 1d
-python -m app.main dominios-nic --modo eliminados --periodo 1s
-python -m app.main dominios-nic --version
-python -m app.main dominios-por-caducar --version
-```
-
-```powershell
-python -m app.main dominios-por-caducar --modo descubrir --entrada archivo\dominios-nic-registrados-mes.csv --orden normal --limite 1000 --hilos 18 --progreso si --checkpoint archivo\checkpoint-registrados-mes.json
-```
-
-## Instrucciones candidatas para AGENTS.md
-
-- Usar `PYTHONDONTWRITEBYTECODE=1` cuando `py_compile` falle por bloqueo de `__pycache__`.
-- Validar cambios funcionales con imports y pruebas de humo acotadas.
-- No ejecutar corridas grandes contra NIC sin justificar alcance y usar `--limite` cuando aplique.
-- Mantener `.agents/skills` como adaptadores locales y referenciar las skills globales.
-- No publicar archivos operacionales reales: historicos, backups, candidatos locales, logs, descargas o caches.
-- Usar `VERSION_PROYECTO` como version unica.
+Solo lectura de contratos y estado Git antes de editar, seguida por revisión de los tres documentos de continuidad. No se ejecutaron pruebas Python, consultas a NIC ni comprobaciones del remoto en red porque no hubo cambios funcionales y los datos operacionales están fuera del alcance.

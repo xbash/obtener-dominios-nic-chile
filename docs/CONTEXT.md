@@ -1,168 +1,26 @@
-﻿# Contexto del proyecto
+﻿# Contexto vigente del proyecto
 
-Fecha de consolidacion: 2026-07-20
+Última comprobación local: 2026-10-12 (America/Santiago).
 
-Ultima actualizacion de sesion: 2026-07-26, cierre documental y consolidacion de trazabilidad.
+## Propósito y contratos principales
 
-## Continuidad compacta — 2026-09-25 (ejecutado)
+Herramientas CLI en Python para consultar dominios `.cl` en NIC Chile, mantener históricos CSV locales y revisar candidatos próximos a caducar. El punto de entrada central es `python -m app.main <programa>`; los scripts de la raíz son wrappers de compatibilidad. `README.md` describe el uso y `AGENTS.md` fija las reglas persistentes.
 
-- Sesión de análisis + ejecución de plan sobre README.md y CONTRIBUTING.md.
-- Commit `737bc4a` en `main` (rama local, no pusheado a `origin` en esta sesión).
-- Cambios: validación completa en README; campos CSV apuntan a fuente de verdad; CONTRIBUTING alineado a v2.3.
-- Pendientes preexistentes de git (`AGENTS.md`, `docs/`, `archivo/*.csv`) no tocados en esta sesión; siguen modificados sin commitear.
+- Versión de los CLI: `VERSION_PROYECTO = "v2.3"` en `app/configuracion.py`.
+- Histórico de registrados: `fecha_consulta,dominio,fecha_registro`.
+- Histórico de eliminados: `fecha_consulta,dominio`.
+- Salida de caducidad: `app/salida_dominios.py` es la referencia de campos.
+- Los campos comerciales son heurísticas locales, no métricas verificadas de mercado, SEO, reputación ni estado legal.
 
-## Objetivo actual
+## Estado comprobado
 
-`obtener-dominios-nic-chile` es un conjunto de scripts Python para recolectar y mantener historicos de dominios `.cl` recientemente registrados o eliminados desde NIC Chile, revisar candidatos proximos a caducar y preparar una base historica util para analisis posterior de venta, reventa, subasta o priorizacion comercial.
+La auditoría documental solicitada el 2026-10-11 concluyó **CON BRECHAS**. Fue una inspección estática y de Git; no se ejecutaron los CLI, no se consultó NIC ni se inspeccionó el contenido de los CSV. El informe íntegro quedó en la respuesta de esa sesión; este resumen permite retomar el trabajo sin depender de ella.
 
-El proyecto debe distinguir datos observados desde NIC, supuestos historicos y heuristicas locales. No debe inventar valor comercial, metricas SEO, estado legal, marcas, reputacion ni resultados de mercado.
+En la comprobación del 2026-10-12, `git status -sb` muestra `main...origin/main`, sin indicador de divergencia, con modificaciones preexistentes en `AGENTS.md`, tres documentos de continuidad y dos CSV operacionales; `docs/AUDITORIA_LIMPIEZA_PROYECTO.md` figura eliminado, y hay documentos nuevos sin seguimiento en `docs/` y `docs/archivados/`. No se verificó el estado remoto en red. `git ls-files` confirma que tres CSV bajo `archivo/` y `entrada/candidatos.txt` siguen rastreados, aunque las reglas del proyecto prohíben versionar datos operacionales reales. No se examinó si contienen datos reales ni si se publicaron.
 
-Estado actual de publicacion: el repositorio Git local fue inicializado en `main`, existe remoto `origin` y el ultimo estado observado esta sincronizado con `origin/main`. Los datos operacionales reales deben permanecer ignorados y fuera del repositorio publico.
+## Fuentes y límites de continuidad
 
-## Cierre de sesion 2026-07-26
-
-- Se revisaron `AGENTS.md`, `README.md`, `docs/*` y `.agents/skills/inicializar-proyecto-codex/SKILL.md` para consolidar el contexto.
-- Se verifico que el worktree estaba limpio y que `main` seguia alineada con `origin/main`.
-- No se modificaron codigo ni CSV operacionales en esta sesion; el cierre fue documental.
-- Las memorias durables propuestas siguen pendientes de confirmacion del usuario.
-
-## Flujos principales
-
-- `dominios-nic.py`: consulta dominios registrados o eliminados.
-- `dominios-por-caducar.py`: consulta candidatos dominio por dominio y detecta expiracion cercana.
-- `python -m app.main <programa>`: despachador central alternativo.
-
-## Formatos de salida vigentes
-
-Registrados, para `1h`, `1d`, `1w`, `1m`:
-
-```csv
-fecha_consulta,dominio,fecha_registro
-```
-
-Eliminados, para `1d`, `1s`:
-
-```csv
-fecha_consulta,dominio
-```
-
-Caducidad:
-
-```csv
-fecha_consulta,fuente,fecha_registro,dominio,fecha_expiracion,dias_restantes,estado,longitud,contiene_guion,contiene_numero,solo_letras,keyword_principal,sector_probable,riesgo_reventa
-```
-
-## Archivos modificados o relevantes
-
-Codigo:
-
-- `dominios-nic.py`
-- `dominios-por-caducar.py`
-- `app/configuracion.py`
-- `app/consulta_dominios.py`
-- `app/consulta_dominios_core.py`
-- `app/entrada_dominios.py`
-- `app/dominios_por_caducar.py`
-- `app/salida_dominios.py`
-- `app/checkpoint_dominios.py`
-- `app/enriquecimiento_dominios.py`
-
-Datos y documentacion:
-
-- `archivo/.gitkeep`
-- `entrada/.gitkeep`
-- `entrada/candidatos.example.txt`
-- `docs/*.md`
-- `README.md`
-- `CHANGELOG.md`
-- `CONTRIBUTING.md`
-- `SECURITY.md`
-- `LICENSE`
-- `.gitignore`
-- `.agents/README.md`
-- `.agents/skills/ingenieria-software/*`
-- `.agents/skills/seguridad-appsec/*`
-
-Archivos locales no versionables:
-
-- `archivo/*.csv`
-- `archivo/*.txt`
-- `archivo/*.bak`
-- `entrada/candidatos.txt`
-- `logs/`
-- `descargas/`
-- `__pycache__/`
-- `.agents/_copias-reutilizables-no-usar/`
-
-## Agentes locales
-
-`.agents` quedo como capa local de adaptacion, no como copia activa de skills reutilizables completas.
-
-Estructura activa:
-
-```text
-.agents/
-  README.md
-  skills/
-    ingenieria-software/
-      README.md
-      aplicacion-local.md
-    seguridad-appsec/
-      README.md
-      aplicacion-local.md
-```
-
-Las copias identicas de skills globales fueron movidas a:
-
-```text
-.agents/_copias-reutilizables-no-usar/
-```
-
-Fuentes reutilizables externas:
-
-- `skills/ingenieria-software` en la libreria local de skills reutilizables del mantenedor.
-- `skills/seguridad-appsec` en la libreria local de skills reutilizables del mantenedor.
-
-## Supuestos vigentes
-
-- Version actual del proyecto: `v2.3`, centralizada en `app/configuracion.py` como `VERSION_PROYECTO`.
-- NIC Chile puede cambiar respuestas, campos o formato.
-- Para registrados, `fecha_registro` debe venir desde el CSV de NIC cuando este disponible.
-- Para historicos antiguos de registrados, la antigua columna `fecha` se uso como `fecha_consulta` y como base inicial de `fecha_registro`, por decision del usuario.
-- Para eliminados no se agrega `fecha_registro`; solo se usa `fecha_consulta`.
-- Las columnas comerciales son heuristicas locales, no metricas de mercado.
-
-## Problemas encontrados
-
-- La carpeta `.git` existia pero estaba vacia/incompleta; se inicializo Git en `main`.
-- `gh` no estaba instalado o no estaba en `PATH`, por lo que la publicacion se termino mediante flujo Git/remoto externo.
-- Antes de publicar se detectaron historicos reales, backups y candidatos locales que no debian versionarse; se reforzo `.gitignore` y se agrego `entrada/candidatos.example.txt`.
-- `SECURITY.md` tenia un placeholder de correo de seguridad; fue reemplazado por una instruccion sin correo ficticio.
-- `LICENSE` no tenia el texto completo GPLv3; se reemplazo por el texto oficial GPLv3.
-- Algunos scripts indicaban `Version: v1.0`; se unifico todo a `v2.3`.
-- Windows/sandbox nego escritura en `archivo/`, `docs/` y `__pycache__` en varias validaciones.
-- El checkpoint fallaba ante `PermissionError`; se agregaron reintentos y advertencia no fatal.
-- Una corrida agrego duplicados al no reconocer CSV de 3 columnas; se corrigio el parser y se reparo el historico.
-- Habia copias completas de skills reutilizables en `.agents`; se archivaron y se crearon adaptadores locales.
-
-## Comandos utiles
-
-```powershell
-python -m app.main dominios-nic --modo registrados --periodo 1m
-python -m app.main dominios-nic --modo eliminados --periodo 1s
-python -m app.main dominios-por-caducar --modo descubrir --entrada archivo\dominios-nic-registrados-mes.csv --limite 1000 --hilos 18 --progreso si
-python -m app.main dominios-nic --version
-python -m app.main dominios-por-caducar --version
-git status -sb --ignored
-git push -u origin main
-```
-
-## Instrucciones candidatas para AGENTS.md
-
-- Mantener los formatos CSV vigentes por modo y periodo.
-- Antes de modificar `archivo/*.csv`, crear respaldo o validar conteos.
-- No versionar historicos reales, respaldos, candidatos locales, logs, descargas ni `__pycache__`.
-- Mantener `VERSION_PROYECTO` como fuente unica para version del proyecto.
-- Distinguir datos observados desde NIC de heuristicas locales.
-- No inferir valor comercial, marcas, SEO ni riesgo legal sin fuente externa verificable.
-- Mantener `.agents` como adaptadores locales; no duplicar skills globales completas salvo copia congelada justificada.
+- `docs/DECISIONS.md`: decisiones técnicas registradas y decisión vigente de posponer acciones correctivas.
+- `docs/HANDOFF.md`: pendientes, orden de revisión y criterios para retomar.
+- `docs/CONTEXTO_PROYECTO.md`, `docs/DECISIONES_TECNICAS.md` y `docs/PENDIENTES.md` son archivos sin seguimiento con contenido parcialmente duplicado; su vigencia y destino requieren decisión. Los informes de logging anteriores a la implementación contienen diagnósticos históricos y no describen por sí solos el estado actual.
+- La consolidación actualizó referencias de estado en estos documentos de continuidad. Las demás acciones de la auditoría siguen pendientes. No se hicieron commits, push ni cambios en datos operacionales.

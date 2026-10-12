@@ -18,6 +18,17 @@ Cambios aplicados:
 Decisión editorial tomada: versión no expuesta en README (evita duplicación con `app/configuracion.py`).
 Enlace a CONTRIBUTING.md conservado con advertencia (opción A); CONTRIBUTING.md actualizado en el mismo commit.
 
+Script `publicar-cambios-github.ps1`: se agrega `--no-pager` a `$opcionesGit` para evitar que git diff/status abran el pager interactivo (less) en terminales no configuradas. Cambio aplicado en `C:\rutinas-local\powershell\1-practicas\publicar-cambios-github.ps1`.
+
+## AGENTS.md — revisión 2026-09-26
+
+Cuatro cambios aplicados al `AGENTS.md` raíz (no commiteados aún):
+
+1. **Punto de entrada canónico:** `python -m app.main <programa>` declarado explícitamente en §Arquitectura. Los wrappers raíz son de compatibilidad.
+2. **Política de modelos:** alias propietarios (Luna/Tierra) eliminados. Reemplazados por niveles genéricos: *capacidad baja/media/alta × esfuerzo bajo/medio*. Política agnóstica al proveedor (Claude, Gemini, Qwen u otro).
+3. **Herramienta de publicación:** referencia a `publicar-cambios-github.ps1` en §Forma de trabajar, sin ruta estática.
+4. **§Cierre de una tarea:** restricción de calidad ("no inventar datos") promovida al inicio de la sección; formato de informe queda como guía secundaria.
+
 ## CSV como formato historico principal
 
 Decision: usar CSV para historicos y salidas principales.
@@ -132,3 +143,7 @@ Trade-off: requiere mantener sincronizados los docs de continuidad en cada cierr
 - Evaluar una herramienta de post-procesamiento para DNS/HTTP/SEO/reputacion.
 - Decidir si borrar o conservar `_copias-reutilizables-no-usar/`.
 - Definir un flujo estable de publicacion: GitHub CLI en `PATH` o comandos Git remotos manuales.
+
+## Aplazamiento de acciones correctivas — 2026-10-12
+
+El usuario decidió aplicar en otro momento las acciones correctivas de la auditoría de contratos realizada el 2026-10-11. La conclusión de esa auditoría fue **CON BRECHAS**. Las seis acciones pendientes, sus dependencias y la forma de retomar están en `docs/HANDOFF.md`; el estado comprobado se resume en `docs/CONTEXT.md`. Este registro documenta el aplazamiento y no autoriza ejecutar las correcciones. Las decisiones técnicas anteriores de este archivo siguen como registro histórico; su vigencia debe contrastarse con el código y el estado actual cuando corresponda.

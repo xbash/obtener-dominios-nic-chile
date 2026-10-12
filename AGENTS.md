@@ -14,8 +14,9 @@ documentos específicos bajo `docs/`.
 ## Arquitectura y convenciones
 
 - El código de aplicación reside en `app/`.
-- `dominios-nic.py` y `dominios-por-caducar.py` son wrappers delgados; conservar
-  la lógica de negocio en `app/`.
+- `python -m app.main <programa>` es el despachador central. `dominios-nic.py` y
+  `dominios-por-caducar.py` en la raíz son wrappers de compatibilidad; no añadir
+  lógica de negocio en ellos.
 - Usar la biblioteca estándar de Python salvo que una dependencia externa esté
   explícitamente justificada, evaluada y aprobada.
 - Mantener `VERSION_PROYECTO` en `app/configuracion.py` como fuente única de la
@@ -73,7 +74,9 @@ configuración crítica— analizar impacto y dependencias antes de actuar. Si h
 incertidumbre relevante, presentar la acción propuesta y esperar aprobación.
 
 No hacer commits, push, publicaciones, despliegues, merges ni pull requests
-salvo solicitud explícita.
+salvo solicitud explícita. Para confirmar y enviar cambios al remoto, usar el
+script `publicar-cambios-github.ps1` disponible en las herramientas del
+mantenedor.
 
 ## Documentación
 
@@ -112,37 +115,38 @@ No afirmar resultados, compatibilidades, métricas ni validaciones no verificada
 
 Usar el modelo menos costoso que pueda resolver correctamente la tarea. Distinguir
 volumen de trabajo de complejidad cognitiva: muchos archivos no implican por sí
-solos que se requiera un modelo de mayor capacidad.
+solos que se requiera un modelo de mayor capacidad. Esta política es independiente
+del proveedor (Claude, Gemini, Qwen u otro).
 
-- **Luna, esfuerzo bajo:** inventarios, búsquedas, cambios repetitivos ya
-  especificados, formateo, renombres, movimientos aprobados, boilerplate y
+- **Capacidad baja, esfuerzo bajo:** inventarios, búsquedas, cambios repetitivos
+  ya especificados, formateo, renombres, movimientos aprobados, boilerplate y
   ejecución de comandos conocidos.
-- **Luna, esfuerzo medio:** cambios relacionados y delimitados, refactorizaciones
-  pequeñas, localización de referencias, correcciones simples o ejecución de un
-  plan previamente aprobado.
-- **Tierra, esfuerzo medio:** análisis arquitectónico, diseño, causa raíz
+- **Capacidad baja, esfuerzo medio:** cambios relacionados y delimitados,
+  refactorizaciones pequeñas, localización de referencias, correcciones simples o
+  ejecución de un plan previamente aprobado.
+- **Capacidad media, esfuerzo medio:** análisis arquitectónico, diseño, causa raíz
   compleja, evaluación de alternativas, estimación de impacto, revisión con
   dependencias no triviales y definición de planes.
+- **Capacidad alta:** reservar para tareas con ambigüedad estructural elevada,
+  decisiones de impacto amplio o cuando los niveles anteriores producen resultados
+  insuficientes.
 
 Para trabajo complejo:
 
-1. Usar Tierra para análisis y un plan verificable.
+1. Usar capacidad media o alta para análisis y producir un plan verificable.
 2. Dividir la ejecución en operaciones pequeñas.
-3. Delegar operaciones mecánicas aprobadas a Luna.
-4. Volver a Tierra solo si surge una decisión no prevista, ambigüedad relevante
-   o riesgo arquitectónico.
-
-Cuando esos nombres de modelo no estén disponibles, elegir el nivel equivalente
-por capacidad y costo siguiendo el mismo criterio.
+3. Delegar operaciones mecánicas aprobadas a capacidad baja.
+4. Escalar solo si surge una decisión no prevista, ambigüedad relevante o riesgo
+   arquitectónico.
 
 ## Cierre de una tarea
 
-Informar de forma separada:
+No inventar datos, resultados de NIC, métricas comerciales, estado legal,
+reputación, resultados de mercado ni evidencia no observada.
+
+Al cerrar, informar de forma separada:
 
 - cambios realizados;
 - validaciones ejecutadas y resultado;
 - validaciones no ejecutadas y motivo;
 - riesgos, supuestos y trabajo pendiente.
-
-No inventar datos, resultados de NIC, métricas comerciales, estado legal,
-reputación, resultados de mercado ni evidencia no observada.
